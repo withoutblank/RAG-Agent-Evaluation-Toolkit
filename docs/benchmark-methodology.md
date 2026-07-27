@@ -7,11 +7,11 @@ It separates retrieval, answer, citation, abstention, and latency behavior
 instead of publishing one vague accuracy score. It does not establish model
 superiority and does not generalise beyond the bundled small fictional corpus.
 
-The implementation commit carries a
-[sample-report placeholder](../results/sample_benchmark_report.md). A follow-up
-commit replaces it with the deterministic fake-provider report generated from
-the clean implementation state; no benchmark number is claimed before that
-generation step.
+The current [sample report](../results/sample_benchmark_report.md) was generated
+on 2026-07-27 from clean implementation commit
+`ddca880fec3ea7f4f30f49a81983a4f7312ca67e` with the deterministic fake
+providers. Its metrics were written by the report generator from the run
+records; they were not manually invented or adjusted.
 
 ## Dataset and corpus snapshot
 

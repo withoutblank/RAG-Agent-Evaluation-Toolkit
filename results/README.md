@@ -12,12 +12,17 @@ Those working files are ignored by Git. Live-provider output, timings, run IDs,
 and model behavior can vary, and unreviewed outputs may contain details that do
 not belong in a public repository.
 
-The implementation commit carries a truthful placeholder at:
+The repository keeps one reviewed artifact:
 
-- [`sample_benchmark_report.md`](sample_benchmark_report.md)
+- [`sample_benchmark_report.md`](sample_benchmark_report.md) — an exact
+  byte-for-byte copy of a real `report.md` generated with the deterministic fake
+  embedding and generation providers.
 
-After that commit is clean, the benchmark is run and a follow-up commit replaces
-the placeholder with an exact byte-for-byte copy of the generated `report.md`.
+The sample uses the fictional eight-document corpus and 20-question labelled
+dataset. It records clean implementation commit
+`ddca880fec3ea7f4f30f49a81983a4f7312ca67e` and deliberately preserves weak
+results, including zero unanswerable accuracy for the fake generator. It is
+evidence of the evaluation method, not a model-quality claim.
 
 ## Reproduce
 

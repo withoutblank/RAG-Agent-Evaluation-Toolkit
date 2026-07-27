@@ -77,14 +77,34 @@ the fake-provider ingest before returning to the offline index.
 
 ## Generated benchmark
 
-The implementation commit intentionally contains a
-[benchmark placeholder](results/sample_benchmark_report.md). A follow-up commit
-will replace it with the reviewed four-configuration fake-provider report
-generated from this clean implementation state. This two-stage process prevents
-a dirty worktree from being presented as reproducible benchmark provenance.
+The committed sample was generated on 2026-07-27 from clean implementation
+commit `ddca880fec3ea7f4f30f49a81983a4f7312ca67e`. It used eight fictional
+documents and dataset schema version 1 with 20 questions: 16 answerable and 4
+unanswerable.
 
-See the [methodology](docs/benchmark-methodology.md) for the controlled matrix,
-metrics, and promotion rules.
+- Corpus SHA-256:
+  `4962d282438f78a854b64dd9abfcdc0bfa4914fdde807d79aad2c3ef00a6e1cb`
+- Dataset SHA-256:
+  `df35ede3ac9d6de704457d78f40d658130fd5a0c2707370d708b02de1ab0bda9`
+- Providers: `fake-hash-v3-d4096-s42` and `fake-generation-v1`
+- Prompt/seed/temperature: `v1` / `42` / `0.0`
+- Git provenance: `ddca880fec3ea7f4f30f49a81983a4f7312ca67e` / `clean`
+
+| Configuration | Chunk | Overlap | k | Hit Rate | MRR | Source Recall | Fact Coverage | Citation Validity | Citation Precision | Unanswerable Accuracy | Median Retrieval (ms) | Median Total (ms) |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| `small-k3` | 300 | 50 | 3 | 1.000 | 1.000 | 0.948 | 0.396 | 1.000 | 0.938 | 0.000 | 0.207 | 0.345 |
+| `large-k3` | 600 | 100 | 3 | 1.000 | 0.969 | 0.948 | 0.385 | 1.000 | 0.875 | 0.000 | 0.102 | 0.300 |
+| `small-k5` | 300 | 50 | 5 | 1.000 | 1.000 | 0.979 | 0.396 | 1.000 | 0.938 | 0.000 | 0.218 | 0.427 |
+| `large-k5` | 600 | 100 | 5 | 1.000 | 0.969 | 1.000 | 0.385 | 1.000 | 0.875 | 0.000 | 0.119 | 0.428 |
+
+These are fake-provider plumbing results, not semantic model-quality claims.
+All four configurations retrieved at least one expected source for every
+answerable question, while the simple fake generator abstained correctly on
+none of the four unanswerable questions. The report preserves 76
+generation-quality failures across the 80 configuration-question pairs rather
+than hiding them. No composite winner is calculated. See the
+[full per-question report](results/sample_benchmark_report.md) and
+[methodology](docs/benchmark-methodology.md).
 
 ## Architecture
 

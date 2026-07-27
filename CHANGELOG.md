@@ -22,7 +22,7 @@ Versioning.
 - Deterministic retrieval, required-fact, citation, abstention, and latency
   metrics with four controlled benchmark configurations.
 - JSON, CSV, and Markdown reporting, including a real fake-provider sample
-  benchmark with per-question failure analysis.
+  benchmark with clean Git provenance and per-question failure analysis.
 - Typer CLI commands for ingestion, direct and agent answers, evaluation,
   benchmarking, report generation, and environment diagnosis.
 - One-page Streamlit interface for corpus/index status, cited answers, retrieved
@@ -46,6 +46,8 @@ Versioning.
   Git provenance; dirty runs no longer attribute their inputs to `HEAD`.
 - Made report ordering independent of input-file order so `rag-eval report`
   reproduces the benchmark Markdown byte-for-byte.
+- Made repository setup explicitly disable automatic merged-branch deletion;
+  reviewed remote task branches remain a manual post-merge action.
 
 ### Security
 
