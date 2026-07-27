@@ -123,7 +123,7 @@ try {
         "repo", "edit", $fullName,
         "--enable-issues=true",
         "--enable-wiki=false",
-        "--delete-branch-on-merge",
+        "--delete-branch-on-merge=false",
         "--description", $description
     )
     foreach ($topic in $topics) {
@@ -364,7 +364,7 @@ try {
         ) `
         -CaptureOutput
     $metadata = $metadataJson | ConvertFrom-Json
-    if (-not $metadata.deleteBranchOnMerge -or
+    if ($metadata.deleteBranchOnMerge -or
         -not $metadata.hasIssuesEnabled -or
         $metadata.hasWikiEnabled -or
         $metadata.description -cne $description) {
@@ -376,7 +376,7 @@ try {
             throw "Repository topic '$topic' was not present after setup."
         }
     }
-    Write-Host "Repository metadata, labels, milestone, and implementation issues are configured."
+    Write-Host "Repository metadata, labels, milestone, and implementation issues are configured; automatic branch deletion is disabled."
 }
 finally {
     Pop-Location

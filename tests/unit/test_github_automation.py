@@ -134,6 +134,19 @@ def test_project_setup_contains_exact_mvp_labels_milestone_and_issues() -> None:
     assert "v0.1.0 — Portfolio MVP" in script
     assert '"--force"' in script
     assert "$existingTitles -ccontains $issue.Title" in script
+    edit_arguments = script[
+        script.index("$editArguments = @(") : script.index("foreach ($topic in $topics)")
+    ]
+    assert '"--delete-branch-on-merge=false"' in edit_arguments
+    assert (
+        re.search(
+            r'^\s*"--delete-branch-on-merge",?\s*$',
+            edit_arguments,
+            flags=re.MULTILINE,
+        )
+        is None
+    )
+    assert "if ($metadata.deleteBranchOnMerge -or" in script
     for heading in (
         "## Objective",
         "## Implementation notes",
