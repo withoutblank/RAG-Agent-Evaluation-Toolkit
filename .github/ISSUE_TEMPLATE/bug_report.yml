@@ -1,0 +1,57 @@
+name: Bug report
+description: Report a reproducible defect without sharing sensitive data.
+title: "[Bug]: "
+labels:
+  - type:bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Remove API keys, private documents, personal paths, and other sensitive
+        information before submitting.
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: v0.1.0 or commit SHA
+    validations:
+      required: true
+  - type: input
+    id: operating_system
+    attributes:
+      label: Operating system
+      placeholder: Windows 11
+    validations:
+      required: true
+  - type: input
+    id: python_version
+    attributes:
+      label: Python version
+      placeholder: Python 3.12.10
+    validations:
+      required: true
+  - type: textarea
+    id: command
+    attributes:
+      label: Command or minimal reproduction
+      render: powershell
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual result
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Sanitized logs
+      description: Remove secrets, private content, and absolute personal paths.
+      render: text

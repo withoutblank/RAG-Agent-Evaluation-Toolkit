@@ -1,0 +1,58 @@
+# Python bytecode and tool caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Build and packaging output
+build/
+dist/
+*.egg-info/
+
+# Local environments and secrets
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# Local indexes and generated benchmark output
+.rag_eval/
+*.npy
+*.npz
+results/*
+!results/README.md
+!results/sample_benchmark_report.md
+
+# Local logs
+*.log
+
+# Local build-pack specifications (reader-facing versions live under docs/)
+/00_START_HERE.md
+/ARCHITECTURE.md
+/CI_SECURITY_MAINTENANCE.md
+/CODEX_PROMPTS.md
+/DATA_MODEL_AND_INTERFACES.md
+/DECISIONS_AND_CHANGELOG.md
+/EVALUATION_PLAN.md
+/GITHUB_AUTOMATION.md
+/IMPLEMENTATION_PLAN.md
+/MANIFEST.md
+/PORTFOLIO_JOB_APPLICATION.md
+/PROJECT_SPEC.md
+/README_BLUEPRINT.md
+/REPOSITORY_DOCUMENTS_SPEC.md
+/SOURCES.md
+/TESTING_ACCEPTANCE.md
