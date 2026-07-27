@@ -1,0 +1,33 @@
+schema_version: 1
+corpus_dir: sample_data/fictional_ev_support
+evaluation_dataset: evals/fictional_ev_support_questions.jsonl
+results_dir: results
+provider: fake
+embedding_model: fake-hash-v3-d4096-s42
+generation_model: fake-generation-v1
+temperature: 0.0
+prompt_version: v1
+seed: 42
+evaluation_mode: direct_rag
+llm_judge_enabled: false
+
+experiments:
+  - name: small-k3
+    chunk_size: 300
+    overlap: 50
+    top_k: 3
+
+  - name: large-k3
+    chunk_size: 600
+    overlap: 100
+    top_k: 3
+
+  - name: small-k5
+    chunk_size: 300
+    overlap: 50
+    top_k: 5
+
+  - name: large-k5
+    chunk_size: 600
+    overlap: 100
+    top_k: 5
