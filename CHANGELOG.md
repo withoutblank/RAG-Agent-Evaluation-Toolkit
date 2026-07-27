@@ -50,6 +50,8 @@ Versioning.
   reviewed remote task branches remain a manual post-merge action.
 - Made milestone discovery use JSON parsing instead of a shell-sensitive filter
   so project setup works reliably in Windows PowerShell.
+- Made GitHub CLI output explicitly UTF-8 and constructed the milestone em dash
+  by code point so BOM-less PowerShell scripts preserve its public title.
 
 ### Security
 

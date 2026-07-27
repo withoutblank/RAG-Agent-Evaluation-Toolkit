@@ -12,6 +12,10 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+$previousConsoleOutputEncoding = [Console]::OutputEncoding
+$utf8NoBom = New-Object System.Text.UTF8Encoding($false)
+$script:OutputEncoding = $utf8NoBom
+[Console]::OutputEncoding = $utf8NoBom
 
 . (Join-Path $PSScriptRoot "github/common.ps1")
 
@@ -161,7 +165,7 @@ try {
             )
     }
 
-    $milestoneTitle = "v0.1.0 — Portfolio MVP"
+    $milestoneTitle = "v0.1.0 $([char]0x2014) Portfolio MVP"
     $milestonePagesJson = Invoke-CheckedCommand `
         -Command "gh" `
         -Arguments @(
@@ -395,4 +399,5 @@ try {
 }
 finally {
     Pop-Location
+    [Console]::OutputEncoding = $previousConsoleOutputEncoding
 }

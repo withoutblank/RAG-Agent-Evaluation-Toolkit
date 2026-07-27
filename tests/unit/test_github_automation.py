@@ -131,7 +131,9 @@ def test_project_setup_contains_exact_mvp_labels_milestone_and_issues() -> None:
 
     assert all(f'"{label}"' in script for label in expected_labels)
     assert all(f'Title = "{title}"' in script for title in expected_issues)
-    assert "v0.1.0 — Portfolio MVP" in script
+    assert '"v0.1.0 $([char]0x2014) Portfolio MVP"' in script
+    assert "[Console]::OutputEncoding = $utf8NoBom" in script
+    assert "[Console]::OutputEncoding = $previousConsoleOutputEncoding" in script
     assert '"--force"' in script
     assert "$existingTitles -ccontains $issue.Title" in script
     edit_arguments = script[
