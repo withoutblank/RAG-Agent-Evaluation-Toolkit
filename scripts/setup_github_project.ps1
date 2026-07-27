@@ -162,17 +162,32 @@ try {
     }
 
     $milestoneTitle = "v0.1.0 — Portfolio MVP"
-    $milestoneNumber = Invoke-CheckedCommand `
+    $milestonePagesJson = Invoke-CheckedCommand `
         -Command "gh" `
         -Arguments @(
             "api",
             "--paginate",
-            "repos/$fullName/milestones?state=all&per_page=100",
-            "--jq",
-            ".[] | select(.title == `"$milestoneTitle`") | .number"
+            "--slurp",
+            "repos/$fullName/milestones?state=all&per_page=100"
         ) `
         -CaptureOutput
-    if ([string]::IsNullOrWhiteSpace($milestoneNumber)) {
+    $milestonePages = $milestonePagesJson | ConvertFrom-Json
+    $matchingMilestones = @(
+        foreach ($page in $milestonePages) {
+            foreach ($milestone in @($page)) {
+                if ($milestone.title -ceq $milestoneTitle) {
+                    $milestone
+                }
+            }
+        }
+    )
+    if ($matchingMilestones.Count -gt 1) {
+        throw "Multiple milestones named '$milestoneTitle' exist; resolve the duplicate before setup."
+    }
+    if ($matchingMilestones.Count -eq 1) {
+        $milestoneNumber = "$($matchingMilestones[0].number)"
+    }
+    else {
         $milestoneNumber = Invoke-CheckedCommand `
             -Command "gh" `
             -Arguments @(

@@ -48,6 +48,8 @@ Versioning.
   reproduces the benchmark Markdown byte-for-byte.
 - Made repository setup explicitly disable automatic merged-branch deletion;
   reviewed remote task branches remain a manual post-merge action.
+- Made milestone discovery use JSON parsing instead of a shell-sensitive filter
+  so project setup works reliably in Windows PowerShell.
 
 ### Security
 

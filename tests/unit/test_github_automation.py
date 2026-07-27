@@ -147,6 +147,9 @@ def test_project_setup_contains_exact_mvp_labels_milestone_and_issues() -> None:
         is None
     )
     assert "if ($metadata.deleteBranchOnMerge -or" in script
+    assert '"--slurp"' in script
+    assert "$milestonePagesJson | ConvertFrom-Json" in script
+    assert "$matchingMilestones.Count -gt 1" in script
     for heading in (
         "## Objective",
         "## Implementation notes",
